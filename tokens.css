@@ -1,0 +1,412 @@
+/*
+ * Continuum Design System — Base + Semantic CSS Variables
+ * Mirrors @pagerduty/continuum.tokens (lib/shared/tokens/foundations/*).
+ *
+ * Light mode is the default. Dark mode activates with [data-theme="dark"]
+ * on the root or any ancestor.
+ *
+ * Source of truth:
+ *   - colours.ts   (palette + brand semantic colors)
+ *   - typography.ts (system UI font stack — Continuum uses the OS font)
+ *   - spacing.ts / radius.ts / shadows.ts / breakpoints.ts
+ */
+
+:root {
+  /* ─────────────────────────────────────────────────────────────
+     PALETTE — primitives. Do not use directly in product UI.
+     ───────────────────────────────────────────────────────────── */
+  --pd-black: #000000;
+  --pd-white: #FFFFFF;
+
+  --pd-gray-50:  #F7FAFC;
+  --pd-gray-100: #EDF2F7;
+  --pd-gray-200: #E2E8F0;
+  --pd-gray-300: #CBD5E0;
+  --pd-gray-400: #8A95A8;
+  --pd-gray-500: #647487;
+  --pd-gray-600: #4A5568;
+  --pd-gray-700: #2D3748;
+  --pd-gray-800: #1A202C;
+  --pd-gray-900: #171923;
+
+  --pd-blue-50:  #EBF8FF;
+  --pd-blue-100: #BEE3F8;
+  --pd-blue-200: #90CDF4;
+  --pd-blue-300: #63B3ED;
+  --pd-blue-400: #4299E1;
+  --pd-blue-500: #0052CC;  /* PagerDuty primary action blue */
+  --pd-blue-600: #003F9C;
+  --pd-blue-700: #003380;
+  --pd-blue-800: #002660;
+  --pd-blue-900: #1A365D;
+
+  --pd-red-50:  #FFF5F5;
+  --pd-red-100: #FED7D7;
+  --pd-red-200: #FEB2B2;
+  --pd-red-300: #FC8181;
+  --pd-red-400: #F56565;
+  --pd-red-500: #D92626;  /* danger */
+  --pd-red-600: #C53030;
+  --pd-red-700: #9B2C2C;
+  --pd-red-800: #822727;
+  --pd-red-900: #63171B;
+
+  --pd-green-50:  #F0FFF4;
+  --pd-green-100: #E2F2E3;
+  --pd-green-200: #9AE6B4;
+  --pd-green-300: #68D391;
+  --pd-green-400: #48BB78;
+  --pd-green-500: #38A169;
+  --pd-green-600: #2C7D54;
+  --pd-green-700: #276749;
+  --pd-green-800: #22543D;
+  --pd-green-900: #1C4532;
+
+  --pd-orange-50:  #FFFAF0;
+  --pd-orange-100: #FEEBC8;
+  --pd-orange-200: #FBD38D;
+  --pd-orange-300: #F6AD55;
+  --pd-orange-400: #ED8936;
+  --pd-orange-500: #DD6B20;  /* warning */
+  --pd-orange-600: #C05621;
+  --pd-orange-700: #9C4221;
+  --pd-orange-800: #7B341E;
+  --pd-orange-900: #652B19;
+
+  --pd-yellow-50:  #FFFCE6;
+  --pd-yellow-100: #FFF8CC;
+  --pd-yellow-200: #FFF3A6;
+  --pd-yellow-300: #FFED7F;
+  --pd-yellow-400: #FFDC00;
+  --pd-yellow-500: #D69E2E;
+  --pd-yellow-600: #B7791F;
+  --pd-yellow-700: #975A16;
+  --pd-yellow-800: #744210;
+  --pd-yellow-900: #665000;
+
+  --pd-purple-50:  #FAF5FF;
+  --pd-purple-100: #E9D8FD;
+  --pd-purple-200: #D6BCFA;
+  --pd-purple-300: #B794F4;
+  --pd-purple-400: #9F7AEA;
+  --pd-purple-500: #805AD5;
+  --pd-purple-600: #6B46C1;
+  --pd-purple-700: #553C9A;
+  --pd-purple-800: #44337A;
+  --pd-purple-900: #322659;
+
+  --pd-teal-50:  #E6FFFA;
+  --pd-teal-100: #B2F5EA;
+  --pd-teal-200: #81E6D9;
+  --pd-teal-300: #4FD1C5;
+  --pd-teal-400: #38B2AC;
+  --pd-teal-500: #319795;
+  --pd-teal-600: #2C7A7B;
+  --pd-teal-700: #285E61;
+  --pd-teal-800: #234E52;
+  --pd-teal-900: #1D4044;
+
+  --pd-cyan-50:  #EDFDFD;
+  --pd-cyan-100: #C4F1F9;
+  --pd-cyan-200: #9DECF9;
+  --pd-cyan-300: #76E4F7;
+  --pd-cyan-400: #0BC5EA;
+  --pd-cyan-500: #00B5D8;
+  --pd-cyan-600: #00A3C4;
+  --pd-cyan-700: #0987A0;
+  --pd-cyan-800: #086F83;
+  --pd-cyan-900: #065666;
+
+  --pd-pink-50:  #FFF5F7;
+  --pd-pink-100: #FED7E2;
+  --pd-pink-200: #FBB6CE;
+  --pd-pink-300: #F687B3;
+  --pd-pink-400: #ED64A6;
+  --pd-pink-500: #CD2D80;
+  --pd-pink-600: #B83280;
+  --pd-pink-700: #97266D;
+  --pd-pink-800: #702459;
+  --pd-pink-900: #521B41;
+
+  /* Alpha overlays */
+  --pd-blackAlpha-50:  rgba(0,0,0,0.04);
+  --pd-blackAlpha-100: rgba(0,0,0,0.06);
+  --pd-blackAlpha-200: rgba(0,0,0,0.08);
+  --pd-blackAlpha-300: rgba(0,0,0,0.16);
+  --pd-blackAlpha-400: rgba(0,0,0,0.24);
+  --pd-blackAlpha-500: rgba(0,0,0,0.36);
+  --pd-blackAlpha-600: rgba(0,0,0,0.48);
+  --pd-blackAlpha-700: rgba(0,0,0,0.64);
+  --pd-blackAlpha-800: rgba(0,0,0,0.80);
+  --pd-blackAlpha-900: rgba(0,0,0,0.92);
+
+  --pd-whiteAlpha-50:  rgba(255,255,255,0.04);
+  --pd-whiteAlpha-100: rgba(255,255,255,0.06);
+  --pd-whiteAlpha-200: rgba(255,255,255,0.08);
+  --pd-whiteAlpha-300: rgba(255,255,255,0.16);
+  --pd-whiteAlpha-400: rgba(255,255,255,0.24);
+  --pd-whiteAlpha-500: rgba(255,255,255,0.36);
+  --pd-whiteAlpha-600: rgba(255,255,255,0.48);
+  --pd-whiteAlpha-700: rgba(255,255,255,0.64);
+  --pd-whiteAlpha-800: rgba(255,255,255,0.80);
+  --pd-whiteAlpha-900: rgba(255,255,255,0.92);
+
+  /* ─────────────────────────────────────────────────────────────
+     SEMANTIC TOKENS — LIGHT (use these in product code)
+     Names mirror brandColors in colours.ts.
+     ───────────────────────────────────────────────────────────── */
+
+  /* Backgrounds */
+  --pd-bg-primary:     var(--pd-white);
+  --pd-bg-secondary:   var(--pd-gray-50);
+
+  /* Text */
+  --pd-text-default:   var(--pd-black);
+  --pd-text-secondary: var(--pd-gray-900);
+  --pd-text-subtle:    var(--pd-gray-500);
+  --pd-text-disabled:  rgba(26,32,44,0.5); /* gray-800 50% */
+  --pd-text-danger:    var(--pd-red-500);
+  --pd-text-warning:   var(--pd-orange-600);
+  --pd-text-success:   var(--pd-green-600);
+  --pd-text-info:      var(--pd-blue-500);
+
+  /* Focus + borders */
+  --pd-focus-ring:     var(--pd-blue-500);
+  --pd-border:         var(--pd-gray-200);
+  --pd-input-border:   var(--pd-gray-400);
+
+  /* Buttons (solid) */
+  --pd-btn-primary:        var(--pd-blue-500);
+  --pd-btn-primary-hover:  var(--pd-blue-600);
+  --pd-btn-primary-active: var(--pd-blue-700);
+  --pd-btn-danger:         var(--pd-red-500);
+  --pd-btn-danger-hover:   var(--pd-red-600);
+  --pd-btn-danger-active:  var(--pd-red-700);
+  --pd-btn-success:        var(--pd-green-500);
+  --pd-btn-success-hover:  var(--pd-green-600);
+  --pd-btn-success-active: var(--pd-green-700);
+
+  /* Ghost / outline / hover surfaces */
+  --pd-ghost-hover:    var(--pd-gray-100);
+  --pd-ghost-active:   var(--pd-gray-200);
+
+  /* Card */
+  --pd-card-filled:    var(--pd-gray-100);
+  --pd-card-shadow:    var(--pd-blackAlpha-400);
+
+  /* Link */
+  --pd-link:           var(--pd-blue-500);
+  --pd-link-hover:     var(--pd-blue-600);
+
+  /* Tooltip */
+  --pd-tooltip-bg:     var(--pd-gray-900);
+  --pd-tooltip-text:   var(--pd-gray-200);
+
+  /* ─────────────────────────────────────────────────────────────
+     TYPOGRAPHY — system UI font stack (Continuum does not ship a
+     custom webfont — it targets the OS's system font).
+     ───────────────────────────────────────────────────────────── */
+  --pd-font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --pd-font-body:    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --pd-font-mono:    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Font sizes (rem) */
+  --pd-fs-xs:  0.75rem;   /* 12 */
+  --pd-fs-sm:  0.875rem;  /* 14 */
+  --pd-fs-md:  1rem;      /* 16 — body */
+  --pd-fs-lg:  1.25rem;   /* 20 */
+  --pd-fs-xl:  1.5rem;    /* 24 */
+  --pd-fs-2xl: 1.75rem;   /* 28 */
+  --pd-fs-3xl: 2rem;      /* 32 */
+  --pd-fs-4xl: 2.25rem;   /* 36 */
+  --pd-fs-5xl: 2.5rem;    /* 40 */
+  --pd-fs-6xl: 3rem;      /* 48 */
+  --pd-fs-7xl: 4rem;      /* 64 */
+  --pd-fs-8xl: 4.5rem;    /* 72 */
+  --pd-fs-9xl: 5rem;      /* 80 */
+
+  /* Font weights */
+  --pd-fw-light:    300;
+  --pd-fw-regular:  400;
+  --pd-fw-medium:   500;
+  --pd-fw-semibold: 600;
+  --pd-fw-bold:     700;
+
+  /* Line heights */
+  --pd-lh-none:    1;
+  --pd-lh-shorter: 1.25;
+  --pd-lh-short:   1.375;
+  --pd-lh-base:    1.5;
+  --pd-lh-tall:    1.625;
+
+  /* Letter spacings */
+  --pd-ls-tighter: -0.04em;
+  --pd-ls-tight:   -0.02em;
+  --pd-ls-normal:   0;
+  --pd-ls-wide:     0.02em;
+  --pd-ls-wider:    0.04em;
+
+  /* ─────────────────────────────────────────────────────────────
+     SPACING (8px grid via rem) — spacing.ts
+     ───────────────────────────────────────────────────────────── */
+  --pd-space-px:   1px;
+  --pd-space-0-5:  0.125rem;  /* 2  */
+  --pd-space-1:    0.25rem;   /* 4  */
+  --pd-space-1-5:  0.375rem;  /* 6  */
+  --pd-space-2:    0.5rem;    /* 8  */
+  --pd-space-3:    0.75rem;   /* 12 */
+  --pd-space-4:    1rem;      /* 16 */
+  --pd-space-5:    1.25rem;   /* 20 */
+  --pd-space-6:    1.5rem;    /* 24 */
+  --pd-space-8:    2rem;      /* 32 */
+  --pd-space-10:   2.5rem;    /* 40 */
+  --pd-space-12:   3rem;      /* 48 */
+  --pd-space-16:   4rem;      /* 64 */
+  --pd-space-20:   5rem;      /* 80 */
+  --pd-space-24:   6rem;      /* 96 */
+
+  /* ─────────────────────────────────────────────────────────────
+     RADIUS — radius.ts
+     ───────────────────────────────────────────────────────────── */
+  --pd-radius-none: 0;
+  --pd-radius-sm:   0.125rem;
+  --pd-radius-base: 0.25rem;
+  --pd-radius-md:   0.375rem;  /* default for buttons / inputs / cards */
+  --pd-radius-lg:   0.5rem;
+  --pd-radius-xl:   0.75rem;
+  --pd-radius-2xl:  1rem;
+  --pd-radius-3xl:  1.5rem;
+  --pd-radius-full: 9999px;
+
+  /* ─────────────────────────────────────────────────────────────
+     SHADOWS — shadows.ts
+     ───────────────────────────────────────────────────────────── */
+  --pd-shadow-xs:   0 0 0 1px rgba(0,0,0,0.05);
+  --pd-shadow-sm:   0 1px 2px 0 rgba(0,0,0,0.05);
+  --pd-shadow-base: 0 1px 3px 0 rgba(0,0,0,0.10), 0 1px 2px 0 rgba(0,0,0,0.06);
+  --pd-shadow-md:   0 4px 6px -1px rgba(0,0,0,0.10), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --pd-shadow-lg:   0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -2px rgba(0,0,0,0.05);
+  --pd-shadow-xl:   0 20px 25px -5px rgba(0,0,0,0.10), 0 10px 10px -5px rgba(0,0,0,0.04);
+  --pd-shadow-2xl:  0 25px 50px -12px rgba(0,0,0,0.25);
+  --pd-shadow-outline: 0 0 0 3px rgba(66,153,225,0.6);
+  --pd-shadow-inner: inset 0 2px 4px 0 rgba(0,0,0,0.06);
+
+  /* Breakpoints (em — match Chakra) */
+  --pd-bp-sm:  30em;
+  --pd-bp-md:  48em;
+  --pd-bp-lg:  62em;
+  --pd-bp-xl:  80em;
+  --pd-bp-2xl: 96em;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --pd-bg-primary:     var(--pd-gray-900);
+  --pd-bg-secondary:   var(--pd-gray-800);
+
+  --pd-text-default:   var(--pd-white);
+  --pd-text-secondary: var(--pd-gray-50);
+  --pd-text-subtle:    var(--pd-gray-400);
+  --pd-text-disabled:  rgba(255,255,255,0.5);
+  --pd-text-danger:    var(--pd-red-400);
+  --pd-text-warning:   var(--pd-orange-500);
+  --pd-text-success:   var(--pd-green-500);
+  --pd-text-info:      var(--pd-blue-400);
+
+  --pd-focus-ring:     var(--pd-blue-400);
+  --pd-border:         var(--pd-gray-700);
+  --pd-input-border:   var(--pd-gray-600);
+
+  --pd-btn-primary:        var(--pd-blue-400);
+  --pd-btn-primary-hover:  var(--pd-blue-300);
+  --pd-btn-primary-active: var(--pd-blue-200);
+  --pd-btn-danger:         var(--pd-red-400);
+  --pd-btn-danger-hover:   var(--pd-red-300);
+  --pd-btn-danger-active:  var(--pd-red-200);
+  --pd-btn-success:        var(--pd-green-400);
+  --pd-btn-success-hover:  var(--pd-green-300);
+  --pd-btn-success-active: var(--pd-green-200);
+
+  --pd-ghost-hover:    var(--pd-gray-700);
+  --pd-ghost-active:   var(--pd-gray-800);
+
+  --pd-card-filled:    var(--pd-gray-800);
+  --pd-card-shadow:    var(--pd-whiteAlpha-400);
+
+  --pd-link:           var(--pd-blue-200);
+  --pd-link-hover:     var(--pd-blue-300);
+
+  --pd-tooltip-bg:     var(--pd-gray-700);
+  --pd-tooltip-text:   var(--pd-white);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SEMANTIC TYPOGRAPHY UTILITY CLASSES
+   Continuum doesn't ship strict "h1/h2" sizes; product surfaces
+   choose from the size scale. These classes capture the most
+   common pairings.
+   ───────────────────────────────────────────────────────────── */
+.pd-h1 {
+  font-family: var(--pd-font-heading);
+  font-size: var(--pd-fs-3xl);
+  font-weight: var(--pd-fw-bold);
+  line-height: var(--pd-lh-shorter);
+  letter-spacing: var(--pd-ls-tight);
+  color: var(--pd-text-default);
+}
+.pd-h2 {
+  font-family: var(--pd-font-heading);
+  font-size: var(--pd-fs-2xl);
+  font-weight: var(--pd-fw-semibold);
+  line-height: var(--pd-lh-shorter);
+  color: var(--pd-text-default);
+}
+.pd-h3 {
+  font-family: var(--pd-font-heading);
+  font-size: var(--pd-fs-xl);
+  font-weight: var(--pd-fw-semibold);
+  line-height: var(--pd-lh-short);
+  color: var(--pd-text-default);
+}
+.pd-h4 {
+  font-family: var(--pd-font-heading);
+  font-size: var(--pd-fs-lg);
+  font-weight: var(--pd-fw-semibold);
+  line-height: var(--pd-lh-short);
+  color: var(--pd-text-default);
+}
+.pd-body {
+  font-family: var(--pd-font-body);
+  font-size: var(--pd-fs-md);
+  font-weight: var(--pd-fw-regular);
+  line-height: var(--pd-lh-base);
+  color: var(--pd-text-default);
+}
+.pd-body-sm,
+.pd-helper {
+  font-family: var(--pd-font-body);
+  font-size: var(--pd-fs-sm);
+  font-weight: var(--pd-fw-regular);
+  line-height: var(--pd-lh-base);
+  color: var(--pd-text-subtle);
+}
+.pd-caption {
+  font-family: var(--pd-font-body);
+  font-size: var(--pd-fs-xs);
+  font-weight: var(--pd-fw-regular);
+  line-height: var(--pd-lh-short);
+  color: var(--pd-text-subtle);
+}
+.pd-mono {
+  font-family: var(--pd-font-mono);
+  font-size: var(--pd-fs-sm);
+  font-weight: var(--pd-fw-regular);
+  line-height: var(--pd-lh-base);
+}
+.pd-label {
+  font-family: var(--pd-font-body);
+  font-size: var(--pd-fs-sm);
+  font-weight: var(--pd-fw-semibold);
+  line-height: var(--pd-lh-shorter);
+  color: var(--pd-text-default);
+}
