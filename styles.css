@@ -16,38 +16,19 @@ body {
   overflow: hidden;
 }
 
-/* ---- scaling stage: 667x375 landscape, letterboxed ---- */
+/* ---- fullscreen layout ---- */
 #stage {
   position: fixed;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(120% 120% at 50% 0%, #131a28 0%, #070a11 70%);
 }
 .bezel {
-  position: relative;
-  background: #15181d;
-  border-radius: 34px;
-  padding: 12px;
-  box-shadow: 0 0 0 2px #2a2e36, 0 30px 70px -20px rgba(0,0,0,0.8);
-  transform-origin: center center;
-}
-.bezel::before { /* camera/speaker hint on a landscape phone (left edge) */
-  content: "";
-  position: absolute;
-  left: 5px; top: 50%;
-  width: 4px; height: 46px;
-  transform: translateY(-50%);
-  border-radius: 4px;
-  background: #23272f;
+  width: 100%;
+  height: 100%;
 }
 #frame {
-  width: 667px;
-  height: 375px;
+  width: 100%;
+  height: 100%;
   background: var(--pd-bg-secondary);
-  border-radius: 22px;
   overflow: hidden;
   position: relative;
   display: flex;

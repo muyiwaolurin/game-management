@@ -28,25 +28,10 @@
   <script type="text/babel" src="app.jsx"></script>
 
   <script type="text/babel" data-presets="react">
-    // ── scale the 667×375 landscape frame to fit the viewport ──
-    function fit() {
-      const bezel = document.getElementById('bezel');
-      if (!bezel) return;
-      const pad = 24;
-      const fw = 667 + 24, fh = 375 + 24; // frame + bezel padding
-      const sx = (window.innerWidth - pad) / fw;
-      const sy = (window.innerHeight - pad) / fh;
-      const scale = Math.min(sx, sy, 2.6);
-      bezel.style.transform = `scale(${scale})`;
-    }
-    window.addEventListener('resize', fit);
-    fit();
-
     function mount() {
       if (!window.PlaytimeApp) { setTimeout(mount, 30); return; }
       const root = ReactDOM.createRoot(document.getElementById('frame'));
       root.render(React.createElement(window.PlaytimeApp));
-      requestAnimationFrame(fit);
     }
     mount();
   </script>
