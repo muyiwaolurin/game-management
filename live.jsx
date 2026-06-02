@@ -128,6 +128,7 @@ function LiveGame({
           <button className="sbtn" onClick={onOpenStats} aria-label="Stats">
             <Icon name="poll" size={17} />
           </button>
+          <window.FullscreenBtn />
           <div style={{ position: 'relative' }}>
             <button className="sbtn" onClick={() => setMenu((m) => !m)} aria-label="Menu">
               <Icon name="dots" size={17} />

@@ -123,6 +123,7 @@ function EndSummary({ players, gameSec, config, notes, log, onNewGame, onReopen 
           <div className="st-sub">{config.teamName || 'Your Team'} vs {config.opponent || 'Opponent'} · {window.fmtClock(gameSec)} played</div>
         </div>
         <div className="spacer"></div>
+        <window.FullscreenBtn />
         <button className="sbtn" onClick={onReopen}><Icon name="back" size={15} /> Back</button>
         <button className="sbtn" onClick={() => window.print()}><Icon name="print" size={16} /> Print</button>
         <button className="sbtn" onClick={share}><Icon name="share" size={15} /> Share</button>

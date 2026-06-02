@@ -1,6 +1,29 @@
 /* components.jsx — shared UI atoms for Playtime.
    Depends on window.Icon, window.fmtClock, window.balanceOf. */
 
+const { useState: useStateFS, useEffect: useEffectFS } = React;
+
+function FullscreenBtn() {
+  const [isFull, setFull] = useStateFS(!!document.fullscreenElement);
+  useEffectFS(() => {
+    const h = () => setFull(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', h);
+    return () => document.removeEventListener('fullscreenchange', h);
+  }, []);
+  function toggle() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen();
+    }
+  }
+  return (
+    <button className="sbtn" onClick={toggle} aria-label={isFull ? 'Exit fullscreen' : 'Enter fullscreen'}>
+      <window.Icon name={isFull ? 'fullscreenExit' : 'fullscreen'} size={17} />
+    </button>
+  );
+}
+
 // ── PlayerRow ──
 // scheme: 'traffic' | 'minimal' | 'bars'  (playtime color-coding tweak)
 // select: '' | 'sel' | 'sel-out' | 'sel-in'
@@ -102,4 +125,4 @@ function SwapCard({ out, inn }) {
   );
 }
 
-Object.assign(window, { PlayerRow, Drawer, Toast, SwapCard });
+Object.assign(window, { PlayerRow, Drawer, Toast, SwapCard, FullscreenBtn });

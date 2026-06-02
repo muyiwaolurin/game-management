@@ -81,6 +81,7 @@ function SetupScreen({ config, setConfig, players, onAdd, onUpdate, onRemove, on
             {starters.length} / {config.fieldSize}
           </div>
         </div>
+        <window.FullscreenBtn />
         <button className="btn success" disabled={!canStart} onClick={onStart} style={{ height: 38 }}>
           <Icon name="play" size={16} /> Start Game
         </button>
