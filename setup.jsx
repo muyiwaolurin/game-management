@@ -161,7 +161,23 @@ function SetupScreen({ config, setConfig, players, onAdd, onUpdate, onRemove, on
             <div className="rlist">
               {players.map((p) => (
                 <div className="rl-item" key={p.id}>
-                  <span className={`jersey ${p.position === 'GK' ? 'gk' : ''}`}>{p.number}</span>
+                  <span className={`jersey ${p.position === 'GK' ? 'gk' : ''}`}>
+                    <input
+                      value={p.number ?? ''}
+                      placeholder="#"
+                      inputMode="numeric"
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9]/g, '').slice(0, 2);
+                        onUpdate(p.id, { number: val === '' ? null : parseInt(val, 10) });
+                      }}
+                      onBlur={() => {
+                        if (p.number !== null && players.filter((x) => x.id !== p.id).some((x) => x.number === p.number)) {
+                          notify(`Number ${p.number} is taken`);
+                          onUpdate(p.id, { number: null });
+                        }
+                      }}
+                    />
+                  </span>
                   <div className="rl-name">
                     <input value={p.name} onChange={(e) => onUpdate(p.id, { name: e.target.value })} />
                   </div>
