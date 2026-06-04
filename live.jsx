@@ -13,7 +13,7 @@ function LiveGame({
   config, players, gameSec, halfSec, period, running,
   scheme, subMode, showPos = true,
   onToggleClock, onReset, onAdvancePeriod,
-  onSub, onSendOn, onAddLate, onOpenStats, onEndGame, notify, log,
+  onSub, onSendOn, onAddLate, onGoal, onOpenStats, onEndGame, notify, log,
 }) {
   const Icon = window.Icon;
   const { PlayerRow, Drawer, SwapCard } = window;
@@ -163,7 +163,8 @@ function LiveGame({
             ) : field.map((p) => (
               <PlayerRow key={p.id} player={p} scheme={scheme} showPos={showPos}
                 select={selOut === p.id ? 'sel-out' : ''}
-                onClick={() => tapField(p)} />
+                onClick={() => tapField(p)}
+                onGoal={onGoal} />
             ))}
           </div>
         </div>

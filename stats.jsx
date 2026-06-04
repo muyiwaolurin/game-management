@@ -25,6 +25,7 @@ function StatRow({ p, gameSec }) {
       <span className="c-num" style={{ color: 'var(--pd-green-700)' }}>{window.fmtClock(p.playSec)}</span>
       <span className="c-num muted">{window.fmtClock(p.benchSec)}</span>
       <span className="c-num" style={{ flex: '0 0 30px' }}>{p.subCount || 0}</span>
+      <span className="c-num" style={{ flex: '0 0 30px', color: 'var(--pd-blue-600)' }}>{p.goals || 0}</span>
     </div>
   );
 }
@@ -37,6 +38,7 @@ function StatHead() {
       <span className="c-num" style={{ color: 'inherit' }}>Play</span>
       <span className="c-num">Bench</span>
       <span className="c-num" style={{ flex: '0 0 30px' }}>Subs</span>
+      <span className="c-num" style={{ flex: '0 0 30px' }}>Goals</span>
     </div>
   );
 }
@@ -104,7 +106,7 @@ function EndSummary({ players, gameSec, config, notes, log, onNewGame, onReopen 
       `${config.teamName || 'Team'} vs ${config.opponent || 'Opponent'} — Playtime Summary`,
       `Game time ${window.fmtClock(gameSec)} · ${subCount} subs · avg play ${window.fmtClock(stats.avgPlay)}`,
       '',
-      ...rows.map((p) => `#${p.number} ${p.name}: ${window.fmtClock(p.playSec)} played, ${p.subCount || 0} subs${!p.everOnField ? ' (never on)' : ''}`),
+      ...rows.map((p) => `#${p.number} ${p.name}: ${window.fmtClock(p.playSec)} played, ${p.subCount || 0} subs, ${p.goals || 0} goals${!p.everOnField ? ' (never on)' : ''}`),
     ];
     if (notes && notes.trim()) { lines.push('', `Notes: ${notes.trim()}`); }
     const text = lines.join('\n');

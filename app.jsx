@@ -100,7 +100,7 @@ function App() {
       const np = {
         id: uid(), name, number, position: position || null,
         onField, present: true, late: false, arrivalSec: 0,
-        playSec: 0, benchSec: 0, expSec: 0, subCount: 0, everOnField: onField,
+        playSec: 0, benchSec: 0, expSec: 0, subCount: 0, everOnField: onField, goals: 0,
       };
       return { ...s, players: [...s.players, np] };
     });
@@ -128,7 +128,7 @@ function App() {
       const players = window.SAMPLE.map(([name, number, position], i) => ({
         id: uid(), name, number, position,
         onField: i < s.config.fieldSize, present: true, late: false, arrivalSec: 0,
-        playSec: 0, benchSec: 0, expSec: 0, subCount: 0, everOnField: i < s.config.fieldSize,
+        playSec: 0, benchSec: 0, expSec: 0, subCount: 0, everOnField: i < s.config.fieldSize, goals: 0,
       }));
       return { ...s, players };
     });
@@ -184,12 +184,23 @@ function App() {
       const np = {
         id: uid(), name, number, position: position || null,
         onField: false, present: true, late: true, arrivalSec: s.gameSec,
-        playSec: 0, benchSec: 0, expSec: 0, subCount: 0, everOnField: false,
+        playSec: 0, benchSec: 0, expSec: 0, subCount: 0, everOnField: false, goals: 0,
       };
       const log = [{ type: 'arrival', clock: window.fmtClock(s.halfSec), half: s.half, inNum: number, inName: name }, ...s.log];
       return { ...s, players: [...s.players, np], log };
     });
     notify('Late arrival added', 'accountPlus');
+  }
+
+  function logGoal(id) {
+    setS((s) => {
+      const p = s.players.find((x) => x.id === id);
+      if (!p) return s;
+      const players = s.players.map((x) => (x.id === id ? { ...x, goals: (x.goals || 0) + 1 } : x));
+      const log = [{ type: 'goal', clock: window.fmtClock(s.halfSec), half: s.half, playerNum: p.number, playerName: p.name }, ...s.log];
+      return { ...s, players, log };
+    });
+    notify('Goal logged', 'trophy');
   }
 
   function endGame() { setS((s) => ({ ...s, phase: 'summary', running: false })); }
@@ -213,7 +224,7 @@ function App() {
             config={S.config} players={S.players} gameSec={S.gameSec} halfSec={S.halfSec}
             period={S.period} running={S.running} scheme={scheme} subMode={subMode} showPos={t.showPos}
             onToggleClock={toggleClock} onReset={resetClock} onAdvancePeriod={advancePeriod}
-            onSub={makeSub} onSendOn={sendOn} onAddLate={addLate}
+            onSub={makeSub} onSendOn={sendOn} onAddLate={addLate} onGoal={logGoal}
             onOpenStats={() => setShowStats(true)} onEndGame={endGame} notify={notify} log={S.log}
           />
           {showStats ? (

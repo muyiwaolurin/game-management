@@ -27,7 +27,7 @@ function FullscreenBtn() {
 // ── PlayerRow ──
 // scheme: 'traffic' | 'minimal' | 'bars'  (playtime color-coding tweak)
 // select: '' | 'sel' | 'sel-out' | 'sel-in'
-function PlayerRow({ player, scheme = 'traffic', select = '', showPos = true, dim = false, onClick, rightSlot }) {
+function PlayerRow({ player, scheme = 'traffic', select = '', showPos = true, dim = false, onClick, rightSlot, onGoal }) {
   const bal = window.balanceOf(player);
   const ratio = Math.max(0, Math.min(1, bal.ratio));
   const pos = player.position;
@@ -53,6 +53,11 @@ function PlayerRow({ player, scheme = 'traffic', select = '', showPos = true, di
           ) : null}
         </div>
       </div>
+      {onGoal ? (
+        <button className="goal-btn" onClick={(e) => { e.stopPropagation(); onGoal(player.id); }}>
+          ⚽ {player.goals || 0}
+        </button>
+      ) : null}
       {rightSlot ? rightSlot : (
         <div className="ptime">
           <div className="pt-big">{window.fmtClock(player.playSec)}</div>

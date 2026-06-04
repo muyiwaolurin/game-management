@@ -501,6 +501,16 @@ body {
 .trash { color: var(--pd-gray-400); cursor: pointer; border: none; background: none; padding: 4px; border-radius: 4px; display: flex; }
 .trash:hover { color: var(--pd-red-500); background: var(--pd-red-50); }
 
+.goal-btn {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 3px;
+  padding: 3px 7px; border-radius: var(--pd-radius-md);
+  border: 1px solid var(--pd-border); background: #fff;
+  font-family: inherit; font-size: 11px; font-weight: var(--pd-fw-bold);
+  color: var(--pd-text-default); cursor: pointer; white-space: nowrap;
+}
+.goal-btn:hover { background: var(--pd-ghost-hover); }
+.goal-btn:active { background: var(--pd-ghost-active); }
+
 /* ============================================================
    STATS PANEL (slide-over) + END SUMMARY
    ============================================================ */
