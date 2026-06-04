@@ -31,9 +31,10 @@ function PosPick({ value, onChange, size }) {
 }
 
 const SAMPLE = [
-  ['Ava', 7, 'FWD'], ['Mateo', 10, 'MID'], ['Zoe', 4, 'DEF'], ['Liam', 1, 'GK'],
-  ['Mia', 9, 'FWD'], ['Noah', 5, 'DEF'], ['Aria', 8, 'MID'], ['Kai', 11, 'MID'],
-  ['Ivy', 3, 'DEF'], ['Leo', 6, 'FWD'],
+  ['Avery B.', null, null], ['Zeus C.', null, null], ['Nico C.', null, null], ['Cohen C.', null, null],
+  ['Leo D.', null, null], ['Yazan M.', null, null], ['Rustin M.', null, null], ['Leo O.', null, null],
+  ['Mateo T.', null, null], ['Emmett R.', null, null], ['Deacon R.', null, null], ['Denzel R.', null, null],
+  ['Vihaan S.', null, null], ['Dante T.', null, null],
 ];
 
 function SetupScreen({ config, setConfig, players, onAdd, onUpdate, onRemove, onToggleStarter, onStart, onLoadSample, notify }) {
